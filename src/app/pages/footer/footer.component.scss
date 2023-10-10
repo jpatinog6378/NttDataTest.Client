@@ -1,0 +1,16 @@
+.footer {
+    position: fixed;
+    
+    padding: 20px;
+  }
+
+.text-center {
+    display: flex;
+    justify-content: center;
+}
+  
+  @media (max-width: 576px) {
+    .footer {
+      padding: 10px;
+    }
+  }
