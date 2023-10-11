@@ -6,8 +6,9 @@ import { BookPageComponent } from './pages/book-page/book-page.component';
 
 const routes: Routes = [
   {
-    path: 'library-home',
-    component: LibraryHomeComponent
+    path: '', redirectTo: 'library-home',pathMatch: 'full'
+  },
+  { path: 'library-home', component: LibraryHomeComponent
   },
   {
     path : 'author-page',
@@ -16,11 +17,6 @@ const routes: Routes = [
   {
     path : 'book-page',
     component : BookPageComponent
-  },
-  {
-    path: '',
-    redirectTo: 'library-home',
-    pathMatch: 'full'
   }
 
 ];

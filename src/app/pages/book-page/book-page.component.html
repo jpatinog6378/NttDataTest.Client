@@ -1,1 +1,98 @@
-<p>book-page works!</p>
+<app-header></app-header>
+
+<div class="container">
+    <h1 class="display-1 text-center">
+        Authors
+    </h1>
+    <br>
+    <form (submit)="isEditing ? updateBook() : addBook()">
+        <div *ngIf="!isEditing">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title Book</label>
+            <input type="input" class="form-control" id="inputBook" [(ngModel)]="newBookTitle" name="BookTitle">
+            <div id="inputlHelp" class="form-text">Add the name for any book that you want to register.</div>
+          </div>
+      
+          <label for="authorSelect" class="form-label">Author</label>
+          <select class="form-select form-select-lg mb-3" id="authorSelect" [(ngModel)]="selectedAuthor" name="selectedAuthor" (change)="onAuthorSelectChange()">
+            <option *ngFor="let author of listAuthors" [ngValue]="author">{{ author.name }}</option>
+          </select>
+          <div id="inputlHelp" class="form-text">If you don't see the author you want to add to this book, you can register <a href="/author-page" title="Go to Authors">it here.</a></div>
+          <br>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      
+        <div *ngIf="isEditing" class="button-container">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title Book</label>
+            <input type="input" class="form-control" id="inputBook" [(ngModel)]="selectBook.title" name="BookTitle">
+            <div id="inputlHelp" class="form-text">Edit the name for the book.</div>
+          </div>
+      
+          <label for="authorSelect" class="form-label">Author</label>
+          <select class="form-select form-select-lg mb-3" id="authorSelect" [(ngModel)]="selectedAuthor" name="selectedAuthor" (change)="onAuthorSelectChange()">
+            <option *ngFor="let author of listAuthors" [ngValue]="author">{{ author.name }}</option>
+          </select>
+          <div id="inputlHelp" class="form-text">If you don't see the author you want to add to this book, you can register <a href="/author-page" title="Go to Authors">it here.</a></div>
+          <br>
+          <button type="button" class="btn btn-danger  " (click)="CancelUpdate()" >Cancel</button>
+          <button type="submit" class="btn btn-success ">Update</button>
+        </div>
+      </form>      
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title Name Book</th>
+                <th scope="col">Author</th>
+                <th scope="col">Actions</th>
+                <!-- <th scope="col">Employee Anual Salary</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor=" let item of dataSource">
+                <td>{{ item.id }}</td>
+                <td>{{ item.title }}</td>
+                <td>
+                    <ul>
+                        <li *ngFor="let author of item.author">{{ author.name }}</li>
+                    </ul>
+                </td>
+                <td class="button-container">
+                    <button class="btn btn-primary button-container " (click)="editBook(item)" [disabled]="isEditing">Edit</button>
+                    <button class="btn btn-danger button-container " (click)="getDeleteBook(item)" [disabled]="isEditing" data-bs-toggle="modal" data-bs-target="#modalDelate">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <pagination *ngIf="dataSource.length"
+                [(ngModel)]="currentPage"
+                [totalItems]="dataSource.length"
+                [itemsPerPage]="itemsPerPage"
+                (pageChanged)="pageChanged($event)"
+                class="d-flex justify-content-center">
+    </pagination> -->
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" #modalDelete id="modalDelate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Book</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to permanently delete this book?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No!, Sorry</button>
+          <button type="button" class="btn btn-primary" (click)="deleteBook()">Yes, Go ahead</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<app-footer></app-footer>

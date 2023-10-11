@@ -23,6 +23,10 @@ import { FooterComponent } from './pages/footer/footer.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { LibraryHomeComponent } from './pages/library-home/library-home.component';
 import { AuthorPageComponent } from './pages/author-page/author-page.component';
+import { BookPageComponent } from './pages/book-page/book-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -30,10 +34,12 @@ import { AuthorPageComponent } from './pages/author-page/author-page.component';
     FooterComponent,
     HeaderComponent,
     LibraryHomeComponent,
-    AuthorPageComponent
+    AuthorPageComponent,
+    BookPageComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     MdbAccordionModule,
     MdbCarouselModule,
@@ -50,7 +56,8 @@ import { AuthorPageComponent } from './pages/author-page/author-page.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
